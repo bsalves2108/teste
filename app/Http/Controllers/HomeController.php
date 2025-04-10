@@ -30,6 +30,11 @@ class HomeController extends Controller
         return view('contact.form', compact('contact'));
     }
 
+    public function show(Contact $contact): Factory|Application|View|ApplicationContract
+    {
+        return view('contact.show', compact('contact'));
+    }
+
     public function update(EditContactRequest $request, Contact $contact): RedirectResponse
     {
         try {
