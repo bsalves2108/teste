@@ -7,3 +7,9 @@ Excecutar:
 php artisan migrate --seed
 php artisan serve
 ```
+
+Usuário e senha padrão
+```
+admin@alfasoft.pt
+123456789
+```
