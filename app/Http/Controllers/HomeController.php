@@ -54,4 +54,15 @@ class HomeController extends Controller
             return redirect()->back()->with('error', 'Erro ao criar contato: ' . $e->getMessage());
         }
     }
+
+    public function destroy(Contact $contact): RedirectResponse
+    {
+        try {
+            $contact->delete();
+
+            return redirect()->route('contacts.index')->with('success', 'Contato excluído com sucesso.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Erro ao excluir contato: ' . $e->getMessage());
+        }
+    }
 }

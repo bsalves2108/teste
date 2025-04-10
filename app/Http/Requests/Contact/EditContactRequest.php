@@ -24,8 +24,8 @@ class EditContactRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:100',
-            'email' => 'required|email|max:255|unique:contacts,email,' . $this->route('contact')->id,
-            'contact' => 'required|string|max:9|unique:contacts,contact,' . $this->route('contact')->id,
+            'email' => 'required|email|max:255|unique:contacts,email,' . $this->route('contact')->id . ',id,deleted_at,NULL',
+            'contact' => 'required|string|max:9|unique:contacts,contact,' . $this->route('contact')->id . ',id,deleted_at,NULL',
         ];
     }
 
