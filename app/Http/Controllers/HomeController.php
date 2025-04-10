@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Contact\EditContactRequest;
 use App\Http\Requests\Contact\NewContactRequest;
 use App\Models\Contact;
 use Illuminate\Contracts\Foundation\Application as ApplicationContract;
@@ -22,6 +23,23 @@ class HomeController extends Controller
     public function create(): Factory|Application|View|ApplicationContract
     {
         return view('contact.form');
+    }
+
+    public function edit(Contact $contact): Factory|Application|View|ApplicationContract
+    {
+        return view('contact.form', compact('contact'));
+    }
+
+    public function update(EditContactRequest $request, Contact $contact): RedirectResponse
+    {
+        try {
+            $contact->fill($request->all());
+            $contact->save();
+
+            return redirect()->route('contacts.index')->with('success', 'Contato atualizado com sucesso.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Erro ao atualizar contato: ' . $e->getMessage());
+        }
     }
 
     public function store(NewContactRequest $request): RedirectResponse
