@@ -1,4 +1,4 @@
-## Instruções
+## Sobre
 
 O projeto foi desenvolvido o mais puro possível, não foi utilizado nenhuma lib justamente para aproveitar 100% dos recursos nativos do framework.
 
