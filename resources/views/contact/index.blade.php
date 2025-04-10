@@ -5,7 +5,9 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h4>Lista de Contatos</h4>
+                @can('create-contact')
                 <a href="{{ route('contacts.create') }}" class="btn btn-sm btn-success">Adicionar</a>
+                @endcan
             </div>
             <div class="card-body">
                 <div class="table-responsive">

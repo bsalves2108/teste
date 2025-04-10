@@ -4,6 +4,6 @@ O projeto foi desenvolvido o mais puro possível, não foi utilizado nenhuma lib
 
 Excecutar:
 ```bash
-php artisan migrate:seed
+php artisan migrate --seed
 php artisan serve
 ```
