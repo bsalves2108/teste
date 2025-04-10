@@ -13,6 +13,14 @@ use Illuminate\Http\RedirectResponse;
 
 class HomeController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+
+        $this->authorizeResource(Contact::class);
+    }
+
     public function index(): Factory|Application|View|ApplicationContract
     {
         $contacts = Contact::paginate(10);

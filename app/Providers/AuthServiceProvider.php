@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
+use App\Models\Contact;
+use App\Policies\ContactPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -13,7 +15,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        Contact::class => ContactPolicy::class,
     ];
 
     /**
@@ -23,6 +25,16 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('create-contact', function () {
+            return auth()->check();
+        });
+
+        Gate::define('edit-contact', function () {
+            return auth()->check();
+        });
+
+        Gate::define('delete-contact', function () {
+            return auth()->check();
+        });
     }
 }

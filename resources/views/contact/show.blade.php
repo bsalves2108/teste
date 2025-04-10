@@ -21,16 +21,20 @@
                     <p>{{ $contact->contact }}</p>
                 </div>
                 <div class="d-flex justify-content-start">
-                    <a href="{{ route('contacts.edit', $contact->id) }}" class="btn btn-primary me-2">
-                        <i class="fas fa-edit"></i> Editar
-                    </a>
-                    <form action="{{ route('contacts.destroy', $contact->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este contato?')">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">
-                            <i class="fas fa-trash"></i> Excluir
-                        </button>
-                    </form>
+                    @can('edit-contact')
+                        <a href="{{ route('contacts.edit', $contact->id) }}" class="btn btn-primary me-2">
+                            <i class="fas fa-edit"></i> Editar
+                        </a>
+                    @endcan
+                    @can('edit-contact')
+                        <form action="{{ route('contacts.destroy', $contact->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este contato?')">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fas fa-trash"></i> Excluir
+                            </button>
+                        </form>
+                    @endcan
                 </div>
             </div>
         </div>

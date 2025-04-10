@@ -27,21 +27,25 @@
                                 <td>{{ $contact->contact }}</td>
                                 <td>{{ $contact->email }}</td>
                                 <td>
+                                    @can('edit-contact')
                                     <a href="{{ route('contacts.edit', $contact->id) }}" class="btn btn-sm btn-primary">
                                         <i class="fas fa-edit"></i> <span class="d-none d-md-inline">Editar</span>
                                     </a>
+                                    @endcan
                                     <a href="{{ route('contacts.show', $contact->id) }}" class="btn btn-sm btn-success">
                                         <i class="fas fa-eye"></i> <span class="d-none d-md-inline">Ver</span>
                                     </a>
-                                    <form action="{{ route('contacts.destroy', $contact->id) }}" method="POST"
-                                          style="display: inline-block;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger"
-                                                onclick="return confirm('Tem certeza que deseja excluir este contato?')">
-                                            <i class="fas fa-trash"></i> <span class="d-none d-md-inline">Excluir</span>
-                                        </button>
-                                    </form>
+                                    @can('delete-contact')
+                                        <form action="{{ route('contacts.destroy', $contact->id) }}" method="POST"
+                                              style="display: inline-block;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger"
+                                                    onclick="return confirm('Tem certeza que deseja excluir este contato?')">
+                                                <i class="fas fa-trash"></i> <span class="d-none d-md-inline">Excluir</span>
+                                            </button>
+                                        </form>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach
